@@ -29,7 +29,9 @@ export const ConfigProvider: FactoryProvider<Promise<Config>> = {
             const configFile = toml.parse(
                 await fs.readFile(configPath, { encoding: "utf-8" })
             );
-            const cli = { hostname: options.hostname, port: options.port };
+            const cli = {
+                server: { hostname: options.hostname, port: options.port }
+            };
             const configObject: unknown = lodash.defaultsDeep(
                 {},
                 cli,
